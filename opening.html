@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang giới thiệu mở đầu</title>
+    <style>
+      :root {
+        --bg-paper: #f0f0f0;
+        --bg-window: #e2e2e2;
+        --bg-panel: #f7f7f7;
+        --bg-inset: #dcdcdc;
+        --ink: #0c0c0c;
+        --ink-soft: #2b2b2b;
+        --ink-dim: #6a6a6a;
+        --border: #000000;
+        --border-light: #ffffff;
+        --shadow-hard: 2px 2px 0 #000000;
+        --shadow-soft: 1px 1px 0 #000000;
+        --accent: #000000;
+        --accent-rainbow: linear-gradient(90deg, #ff3b30, #ff9500, #ffcc00, #34c759, #5ac8fa, #007aff, #5856d6);
+        --font-ui: 'Chicago', 'Geneva', 'Pixelated MS Sans Serif', 'MS Sans Serif', 'Courier New', monospace;
+      }
+
+      :root[data-theme='dark'] {
+        --bg-paper: #1b1b1b;
+        --bg-window: #242424;
+        --bg-panel: #2a2a2a;
+        --bg-inset: #141414;
+        --ink: #d2d2d2;
+        --ink-soft: #b0b0b0;
+        --ink-dim: #8a8a8a;
+        --border: #4a4a4a;
+        --border-light: #2f2f2f;
+        --shadow-hard: 1px 1px 0 #0a0a0a;
+        --shadow-soft: 0 0 0 #000000;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-ui);
+        background: transparent;
+        color: var(--ink);
+        font-size: 13px;
+        line-height: 1.5;
+        padding: 10px;
+      }
+
+      .shell {
+        border: 1px solid var(--border);
+        background: var(--bg-panel);
+        box-shadow: var(--shadow-hard);
+        padding: 10px;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid var(--border);
+        background: var(--bg-window);
+        box-shadow: var(--shadow-soft);
+        padding: 10px 12px;
+      }
+
+      .header-title {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .header-sub {
+        font-size: 0.75rem;
+        color: var(--ink-dim);
+        margin-top: 4px;
+      }
+
+      .header-tag {
+        border: 1px solid var(--border);
+        background: var(--bg-inset);
+        box-shadow: var(--shadow-soft);
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        background: var(--bg-window);
+        box-shadow: var(--shadow-soft);
+        padding: 10px 12px;
+      }
+
+      .card-title {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 4px;
+        margin-bottom: 8px;
+      }
+
+      .notice {
+        font-size: 0.75rem;
+        color: var(--ink-soft);
+        line-height: 1.6;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 8px;
+        border: 1px solid var(--border);
+        background: var(--bg-panel);
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 6px;
+      }
+
+      .info-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .info-label {
+        color: var(--ink-dim);
+        font-size: 0.7rem;
+      }
+
+      .info-value {
+        font-weight: 700;
+        font-size: 0.75rem;
+      }
+
+      .opening-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .opening-grid.single {
+        grid-template-columns: 1fr;
+      }
+
+      .opening-card {
+        border: 1px solid var(--border);
+        background: var(--bg-panel);
+        box-shadow: var(--shadow-soft);
+        padding: 10px;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .opening-card:hover {
+        background: var(--bg-inset);
+        border-color: var(--accent);
+        box-shadow: var(--shadow-hard);
+      }
+
+      .opening-badge {
+        display: inline-block;
+        border: 1px solid var(--border);
+        background: var(--bg-window);
+        padding: 2px 6px;
+        font-size: 0.65rem;
+        margin-bottom: 6px;
+      }
+
+      .opening-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .opening-desc {
+        font-size: 0.72rem;
+        color: var(--ink-dim);
+        line-height: 1.6;
+      }
+
+      .footer {
+        border: 1px solid var(--border);
+        background: var(--bg-window);
+        box-shadow: var(--shadow-soft);
+        padding: 10px;
+        text-align: center;
+        font-size: 0.8rem;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 720px) {
+        .opening-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .header {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="header">
+        <div>
+          <div class="header-title">Trang giới thiệu mở đầu</div>
+          <div class="header-sub">Nhấn vào lời mở đầu bất kỳ để chuyển đến swipe tương ứng</div>
+        </div>
+        <div class="header-tag">Tác giả: emo的lsp</div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">Tuyên bố bản quyền</div>
+          <div class="notice">
+            Thẻ nhân vật này là miễn phí, nghiêm cấm mọi hành vi thương mại hóa. Nếu bạn có được qua việc mua bán, vui lòng hoàn tiền ngay và báo cáo kẻ bán hàng vô lương tâm cho nền tảng, bảo vệ quyền lợi của người sáng tạo và của chính bạn.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Thông tin nhân vật</div>
+          <div class="info-row">
+            <span class="info-label">Ký chủ</span>
+            <span class="info-value">{{user}}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Trạng thái</span>
+            <span class="info-value">Chờ vào cốt truyện</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Nhấn để chọn lời mở đầu</div>
+          <div class="opening-grid single">
+            <div class="opening-card" onclick="switchToOpening(1)">
+              <div class="opening-badge">Mở đầu</div>
+              <div class="opening-title">Lời mở đầu duy nhất</div>
+              <div class="opening-desc">Nhấn để vào, bắt đầu chọn ký chủ và thế giới quan.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">Bạn đã sẵn sàng bước vào câu chuyện chưa?</div>
+      </div>
+    </div>
+
+    <script>
+      function applyTheme(isDark) {
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      }
+
+      function syncThemeFromStorage(event) {
+        if (event.key !== 'system-dark-mode') return;
+        applyTheme(event.newValue === 'true');
+      }
+
+      setTimeout(function () {
+        applyTheme(localStorage.getItem('system-dark-mode') === 'true');
+        window.addEventListener('storage', syncThemeFromStorage);
+      }, 0);
+
+      async function switchToOpening(swipeId) {
+        const clickedCard = event.currentTarget;
+        if (clickedCard) {
+          clickedCard.style.opacity = '0.6';
+          clickedCard.style.pointerEvents = 'none';
+        }
+
+        try {
+          const messages = await getChatMessages('0', { include_swipe: true });
+          if (messages && messages[0].swipes && messages[0].swipes[swipeId]) {
+            await setChatMessage(messages[0].swipes[swipeId], 0, {
+              swipe_id: swipeId,
+              refresh: 'display_and_render_current',
+            });
+          } else {
+            throw new Error(`Không tìm thấy lời mở đầu ${swipeId}, vui lòng đảm bảo đã thêm tất cả lời mở đầu theo thứ tự.`);
+          }
+        } catch (error) {
+          console.error('Chuyển đổi lời mở đầu thất bại:', error);
+          alert(`Chuyển đổi thất bại: ${error.message}`);
+          if (clickedCard) {
+            clickedCard.style.opacity = '1';
+            clickedCard.style.pointerEvents = 'auto';
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
